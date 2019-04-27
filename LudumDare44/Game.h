@@ -9,8 +9,11 @@ class Game
 public:
 	Game();
 	~Game();
-
-	static sf::Clock DeltaTime;
+	
+	void run();
+	
+	bool gameEnded;
+	static sf::Clock deltaTime;
 
 
 };
