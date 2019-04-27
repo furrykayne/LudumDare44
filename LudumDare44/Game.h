@@ -13,7 +13,8 @@ public:
 	void run();
 	
 	bool gameEnded;
-	static sf::Clock deltaTime;
+	sf::Clock clock;
+	static sf::Int32 deltaTime;
 
 
 };

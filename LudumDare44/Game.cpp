@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "Game.h"
 #include "Player.h"
+#include "Input.h"
 
 #include <SFML/Graphics.hpp>
 #include <iostream>
@@ -19,23 +20,18 @@ Game::~Game()
 void Game::run()
 {
 	sf::RenderWindow window(sf::VideoMode(860, 500), "Ldudum Dare 44");
-
-	Player player;
+	sf::Clock clock;
+	Player player(sf::Vector2f(64, 64), "res/Player.png", sf::Vector2f(100, 250), 5.0f);
 
 	while (!gameEnded) {
 		// Gameloop
-		sf::Event event;
-		while (window.pollEvent(event))
-		{
-			if (event.type == sf::Event::Closed) {
-				gameEnded = true;
-				window.close();
-			}
-				
-		}
+		Input::handleInput(window, gameEnded);
+
+		deltaTime = clock.restart().asMilliseconds();
 
 		window.clear();
 
+		player.update();
 		player.draw(window);
 
 		window.display();
